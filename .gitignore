@@ -7,3 +7,6 @@
 
 # oh-my-claudecode local session state — never tracked
 .omc/
+
+# Local hand-run messaging substrate
+/test-substrate/
