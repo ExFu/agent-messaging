@@ -1,6 +1,6 @@
-# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T17:34:05Z
+# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T17:44:46Z
 
-**Total events:** 87  ·  **Draft:** 3  ·  **Live:** 6  ·  **Dormant:** 0  ·  **Closed:** 4  ·  **Orphaned:** 0
+**Total events:** 100  ·  **Draft:** 0  ·  **Live:** 8  ·  **Dormant:** 0  ·  **Closed:** 5  ·  **Orphaned:** 0
 
 ## Live work
 
@@ -19,6 +19,8 @@
   - `T3-claude-mail-tool` (12 events): entity.extended → verification.tested → entity.progressed
   - `T3-claude-router` (10 events): entity.extended → entity.progressed → verification.tested
   - `T3-claude-session-skills` (10 events): entity.extended → entity.progressed → entity.extended
+  - `T3-codex-relay` (5 events): entity.extended → entity.accepted → entity.progressed
+  - `T3-codex-session-skills` (6 events): entity.accepted → verification.tested → entity.progressed
 
 ### By milestone
 
@@ -29,20 +31,16 @@
   - `T3-claude-mail-tool`
   - `T3-claude-router`
   - `T3-claude-session-skills`
+  - `T3-codex-relay`
+  - `T3-codex-session-skills`
 
 ## Awaiting operator
 
-**Acceptance ceremonies pending** (draft plans — the draft gate blocks implementation against them):
-- `T3-codex-capability-trial` (authored 2026-11-04, 12 commit(s) ago)
-- `T3-codex-relay` (authored 2026-11-04, 12 commit(s) ago)
-- `T3-codex-session-skills` (authored 2026-11-04, 12 commit(s) ago)
+_Nothing waiting on the operator._
 
 ## Draft
 
-- **plan**
-  - `T3-codex-capability-trial`
-  - `T3-codex-relay`
-  - `T3-codex-session-skills`
+_No draft entities._
 
 ## Blocked
 
@@ -58,6 +56,7 @@ _No orphaned entities._
 - `2026-11-04.contract-v2-review` (inbox-item)
 - `2026-11-04.ids-need-strict-order` (inbox-item)
 - `2026-11-04.test-substrate` (inbox-item)
+- `T3-codex-capability-trial` (plan)
 
 ## Notable patterns
 
@@ -65,7 +64,7 @@ _No flapping closures._
 
 ## Milestone progress
 
-- **M1-first-roundtrip**: 0/6 T3 complete (0%); 3 live
+- **M1-first-roundtrip**: 1/6 T3 complete (16%); 5 live
 
 ---
 _13 entities · 14 relationships · 3 decisions._

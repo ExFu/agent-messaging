@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "tested": "genuine scheduled heartbeat forwarding to idle existing Codex chat",
+  "verified_at": "2026-11-04T17:15:04.874582+00:00",
+  "trigger_time": "2026-11-04T17:14:04.415Z",
+  "dispatch": {
+    "status": "send-tool-returned",
+    "trigger": "scheduled heartbeat",
+    "trigger_time": "2026-11-04T17:14:04.415Z",
+    "attempt_time": "2026-11-04T17:14:29.625231+00:00",
+    "threadId": "01a1a78b-7824-7c73-b3dd-9f27bf235db2",
+    "token": "EXFU-SCHEDULED-DELIVERY-001",
+    "returned_at": "2026-11-04T17:14:48.353109+00:00",
+    "tool_result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"threadId\":\"01a1a78b-7824-7c73-b3dd-9f27bf235db2\"}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "receipt": {
+    "token": "EXFU-SCHEDULED-DELIVERY-001",
+    "threadId": "01a1a78b-7824-7c73-b3dd-9f27bf235db2",
+    "timestamp": "2026-11-04T17:14:45.617475+00:00",
+    "status": "received"
+  },
+  "recipient_turn": "01a1a78e-3319-75a0-8d63-d4c48a614f68",
+  "recipient_turn_status": "completed",
+  "untested": [
+    "busy recipient",
+    "unavailable recipient",
+    "app or machine offline",
+    "production mailbox routing",
+    "retry after uncertain delivery"
+  ]
+}

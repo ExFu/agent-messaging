@@ -1,0 +1,18 @@
+{
+  "status": "send-tool-returned",
+  "trigger": "scheduled heartbeat",
+  "trigger_time": "2026-11-04T17:14:04.415Z",
+  "attempt_time": "2026-11-04T17:14:29.625231+00:00",
+  "threadId": "01a1a78b-7824-7c73-b3dd-9f27bf235db2",
+  "token": "EXFU-SCHEDULED-DELIVERY-001",
+  "returned_at": "2026-11-04T17:14:48.353109+00:00",
+  "tool_result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"threadId\":\"01a1a78b-7824-7c73-b3dd-9f27bf235db2\"}"
+      }
+    ],
+    "isError": false
+  }
+}

@@ -1,0 +1,9 @@
+Run the Codex agent-mail router for this Mac using /Users/al/Studio/projects/exfu-agent-messaging/codex/skills/agent-mail-relay/SKILL.md and contract v2. Read them if not already in context. Use only the shared tool at /Users/al/Studio/projects/exfu-agent-messaging/tool/mail.py to access the mailbox.
+
+Keep the latest handled message sequence S in this chat, initially zero if unknown. Call new --for codex --since S with --json, collect distinct recipient addresses and nudge each authorised recipient to run inbox using send_message_to_thread. Do not send message bodies or judge recipient qualifiers. Preserve destination settings. Remember the returned latest after the batch. Duplicate nudges are harmless. Failed nudges leave mail in the inbox; record the failure in this transcript.
+
+Alastair authorised this integration chat (01a1a78b-e940-7ac0-81b1-c4a7909dcb7e) and the dedicated test recipient (01a1a78b-7824-7c73-b3dd-9f27bf235db2), on host local, for this prototype. Other destinations require direct user authorisation; registration alone does not grant it. For this chat's own mail, run inbox here under the agent-mail session skill instead of sending a prompt to itself. Never create chats or other automations.
+
+The pending live test uses EXFU-REAL-MAIL-002. After a genuine scheduled nudge, verify the recipient's reply via the shared tool. Record observed evidence in docs/codex/relay-acceptance.md using this repository's APV capture workflow before committing. Do not claim that busy, unavailable or offline delivery was tested. The normal router job remains nudging only; this one-time evidence recording completes the authorised integration task.
+
+Stay quiet when there is no actionable change. Notify only for a meaningful failure, required user decision or completion of the live integration test.

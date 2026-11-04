@@ -1,0 +1,9 @@
+# Codex router setup — local prototype
+
+One active heartbeat: `agent-mail-codex-router`, attached to chat `01a1a78b-e940-7ac0-81b1-c4a7909dcb7e`, host local. Created 4 November 2026 at 17:43:08 UTC. Saved configuration was inspected: active, five-minute cadence, correct target chat and repository prompt. No standalone router chat was created.
+
+Prompt source: `codex/templates/relay-prompt.md`. The two currently authorised destinations are this integration chat and test recipient `01a1a78b-7824-7c73-b3dd-9f27bf235db2`. Registration alone does not authorise nudging other chats. Old-chat historic mail may still appear; do not nudge that chat without authorisation or alter its marks.
+
+Initial cursor is zero. The preparatory `new` inspection did not send nudges or advance the cursor. Request `20261104T174330.838Z-codex-aa2bf4c8` (sequence 49) is pending for the genuine scheduled test. No manual nudge was sent for it.
+
+To pause/resume/remove: use automation_update with this automation ID, preserving its other settings. Inspect the tool schema first. To move the router, pause the old heartbeat, bind the user-chosen existing chat and update its target/prompt. Resetting the sequence to zero is safe. No leases or delivery state need recovery. Disable the heartbeat before removing this checkout. App/machine offline behaviour remains untested.
