@@ -10,3 +10,6 @@
 
 # Local hand-run messaging substrate
 /test-substrate/
+
+# Python bytecode
+__pycache__/
