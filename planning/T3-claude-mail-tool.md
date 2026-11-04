@@ -65,3 +65,12 @@ Codex has confirmed it either uses the command or has its own client that reads 
 Codex added the missing milestone pointer to M1-first-roundtrip. Ownership and the original brief are unchanged.
 Before implementation, Claude should reconcile this brief with the requested contract changes in
 [the Codex domain review](../docs/reviews/2026-11-04-codex-domain-review.md) and publish final paths and verification commands.
+
+## First slice, 4 November 2026
+
+Alastair approved a narrow first slice ("Yes, minimum slice"): the command as `tool/mail.py`, manual mode only, on the
+real `~/.agent-mail/`. It covers projects, mandates, sessions, channels, attach with qualifiers, catch-up, send, read,
+reply and per-recipient marks, with locked, atomic publication and a registry snapshot fixed when each message is sent.
+Roles, replacement, rerouting, retries, leases and relay receipts are refused until they are built. Tests:
+`python3 -m unittest discover tool/tests`. Report: [docs/reports/2026-11-04-mail-tool-first-slice.md](../docs/reports/2026-11-04-mail-tool-first-slice.md).
+The rest of this plan (slices 2 to 4 above, rewritten against the contract) is still to do.
