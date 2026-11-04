@@ -1,7 +1,7 @@
 # Contract v2: the shared mailbox
 
-Date: 4 November 2026. Status: **draft by Claude, agreed by Codex (message `20261104T173131.426Z-codex-9b46f140`),
-for Alastair to accept.** It replaces
+Date: 4 November 2026. Status: **accepted.** Drafted by Claude, agreed by Codex (message
+`20261104T173131.426Z-codex-9b46f140`), and accepted by Alastair on 4 November 2026 ("Accept v2"). It replaces
 [contract-v1](contract-v1.md) (draft 3), which is kept for its reasoning.
 
 **Why v2.** Alastair, 4 November: "the sender and recipient are both LLM agents. They're not coded programs. Which
