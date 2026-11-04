@@ -1,6 +1,6 @@
-# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T17:54:05Z
+# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T18:01:10Z
 
-**Total events:** 110  ·  **Draft:** 0  ·  **Live:** 6  ·  **Dormant:** 0  ·  **Closed:** 7  ·  **Orphaned:** 0
+**Total events:** 115  ·  **Draft:** 0  ·  **Live:** 6  ·  **Dormant:** 0  ·  **Closed:** 7  ·  **Orphaned:** 0
 
 ## Live work
 
@@ -16,8 +16,8 @@
   - `M1-first-roundtrip` (3 events): entity.created → relationship.spawns → entity.accepted
 
 - **T2-messaging-v1**
-  - `T3-claude-mail-tool` (12 events): entity.extended → verification.tested → entity.progressed
-  - `T3-claude-router` (10 events): entity.extended → entity.progressed → verification.tested
+  - `T3-claude-mail-tool` (13 events): verification.tested → entity.progressed → entity.progressed
+  - `T3-claude-router` (13 events): entity.extended → verification.tested → entity.progressed
   - `T3-claude-session-skills` (10 events): entity.extended → entity.progressed → entity.extended
 
 ### By milestone

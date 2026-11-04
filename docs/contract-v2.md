@@ -84,8 +84,11 @@ of those sessions: "You have new agent mail: run `mail.py inbox`." That's all.
   mail waits in the inbox. Agents and Alastair sort it out by talking.
 - **One router per platform per Mac,** started by Alastair. Two at once would only double the nudges.
 
-Claude's router nudges with `SendMessage` to `local_…` session ids. Codex's router is its scheduled wake-up, which
-nudges with `send_message_to_thread` (Codex's trial of 4 November proved this path).
+**One router for both platforms** (Alastair, 4 November 2026: one router, in Claude, nudging both platforms, if it
+works). It runs `new --for all` and nudges Claude sessions with `SendMessage` to their `local_…` ids, and Codex chats
+with `codex queue --thread <threadId> --message <text>`. Test EXFU-ROUTER-CLAUDE-001 showed that the nudge wakes an
+idle Codex chat. Codex keeps its one-minute scheduled wake-up, which nudges with `send_message_to_thread`, as a
+fallback until Alastair and Codex agree to retire it.
 
 ## 7. Trust
 

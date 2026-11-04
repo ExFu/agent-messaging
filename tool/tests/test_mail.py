@@ -210,6 +210,8 @@ class MailTest(unittest.TestCase):
         again = self.run_mail(ANA, "new", "--for", "claude", "--since", str(start))
         self.assertEqual({r["id"]: r["for"] for r in again["messages"]}[m1["id"]], [CY])   # finished: no nudge
         self.assertEqual(self.run_mail(ANA, "new", "--for", "claude", "--since", str(out["latest"]))["messages"], [])
+        both = self.run_mail(ANA, "new", "--for", "all", "--since", str(start))
+        self.assertEqual({r["id"]: sorted(r["for"]) for r in both["messages"]}[m2["id"]], [BEN])
 
     def test_watch_wakes_on_a_newer_message(self):
         self.setup_demo()

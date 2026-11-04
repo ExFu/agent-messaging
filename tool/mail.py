@@ -20,7 +20,7 @@ judge what is theirs and mark it. A platform's router only nudges sessions that 
 
 For a router (nudging only):
 
-    python3 $M new --for claude --since <seq>               # new messages, who each is for, and the latest seq
+    python3 $M new --for all --since <seq>                  # new messages, who each is for, and the latest seq
     python3 $M watch --since <seq> --timeout 3000           # exits 0 when a newer message exists, 1 on timeout
 
 Your address comes from --as, else $AGENT_MAIL_FROM, else claude:$CLAUDE_CODE_HOST_SESSION_ID, else
@@ -625,14 +625,14 @@ def top_message_seq(state) -> int:
 
 
 def cmd_new(args, root):
-    """Messages newer than --since, with the sessions on one platform each is for that haven't finished it."""
+    """Messages newer than --since, with the sessions (on one platform, or all) each is for that haven't finished it."""
     with locked(root, exclusive=False):
         state = load_all(root)
     rows = []
     for msg in state["messages"]:
         if msg["seq"] <= args.since:
             continue
-        for_them = [a for a in candidates(msg, state) if platform_of(a) == args.for_
+        for_them = [a for a in candidates(msg, state) if args.for_ in ("all", platform_of(a))
                     and not any(m in FINISHED for m in my_marks(msg["id"], a, state))]
         rows.append({"id": msg["id"], "seq": msg["seq"], "from": msg["from"], "to": msg["to"],
                      "subject": msg["subject"], "for": for_them})
@@ -804,7 +804,7 @@ def build_parser() -> argparse.ArgumentParser:
     add("sessions", cmd_sessions)
 
     sp = add("new", cmd_new)
-    sp.add_argument("--for", dest="for_", required=True, choices=PLATFORMS)
+    sp.add_argument("--for", dest="for_", required=True, choices=PLATFORMS + ("all",))
     sp.add_argument("--since", type=int, default=0, help="the latest seq you have already looked at")
     sp = add("watch", cmd_watch)
     sp.add_argument("--since", type=int, required=True)

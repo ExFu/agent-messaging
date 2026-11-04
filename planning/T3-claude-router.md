@@ -91,3 +91,11 @@ new agent mail: run mail.py inbox". It keeps one number (the latest message seq 
 takes no lease, and makes no routing decisions. The command's `lease`, `pending`, `relay` and `envelope` are gone.
 `new --for claude --since <seq>` and `watch --since <seq>` replace them. The dry run above tested the older delivering
 design, so the nudging router still needs its live run.
+
+## One router for both platforms, 4 November 2026
+
+Alastair approved one router, in Claude, nudging both platforms, if it works. The router runs `new --for all` and
+nudges Codex chats with `codex queue --thread <id> --message <text>`. Test EXFU-ROUTER-CLAUDE-001 woke an idle Codex
+test chat with no other help. The chat read the message, then paused to check whether replying was in its brief, and
+replied once that was clarified. Codex keeps its one-minute heartbeat as a fallback until the two sides agree to
+retire it.
