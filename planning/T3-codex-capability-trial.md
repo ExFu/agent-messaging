@@ -49,3 +49,13 @@ The trial can follow acceptance independently of Claude's command; T3-codex-rela
 
 No production messages, no persistent watcher daemon, no external desktop database writes, no new sessions created
 by the relay. Do not modify Claude's code or select a model without the user's instruction.
+
+## 4 November 2026: accepted v2 scope (supersedes the brief above)
+
+Alastair instructed: "make the necessary changes, accept updated drafts and proceed".
+This dated addendum replaces the earlier v1 implementation and acceptance criteria.
+The earlier text and draft frontmatter remain as historical planning records; current state is in the event log.
+
+Preserve the completed 4 November scheduled idle-chat delivery trial and its temporary JSON evidence in docs/codex/. Record runtime identity, five-minute cadence, timings and the limited result. The live real-mailbox nudge belongs to the relay test. Busy, unavailable and offline behaviour remain unverified; they do not block this useful first increment.
+
+Work directly on main. Claude owns the shared tool and Claude skills. Codex owns its skills and scheduler.

@@ -58,3 +58,13 @@ retries preserve message IDs, and an unchanged inbox generates no repeated alert
 The relay forwards; it does not implement requests or create chats. No fixed owner model, workflow engine, per-chat
 heartbeat, new mailbox implementation, or modification to Claude's router. Missing shared semantics go back as
 contract requests to the Claude-owned command plan.
+
+## 4 November 2026: accepted v2 scope (supersedes the brief above)
+
+Alastair instructed: "make the necessary changes, accept updated drafts and proceed".
+This dated addendum replaces the earlier v1 implementation and acceptance criteria.
+The earlier text and draft frontmatter remain as historical planning records; current state is in the event log.
+
+Create codex/skills/agent-mail-relay/SKILL.md, a heartbeat prompt and setup notes. One five-minute heartbeat on the existing integration chat calls the shared command new --for codex --since S, collects distinct recipients, nudges authorised chats to run inbox, and remembers latest. Start from zero if the cursor is lost. Recipients judge qualifiers. No leases, delivery receipts, routing decisions, retries framework or registry watcher. Report failed nudges in the router transcript; mail stays in the mailbox. Reuse an existing automation rather than duplicate it. Test a genuine scheduled nudge through the real mailbox to the existing authorised test recipient. Do not create a new router chat.
+
+Work directly on main. Claude owns the shared tool and Claude skills. Codex owns its skills and scheduler.

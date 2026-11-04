@@ -57,3 +57,13 @@ qualifier-only subscriber performs only its remit, and installation works in a s
 
 No automatic creation of chats, shared-tool fork, new ownership system or edits to Claude skills. The acceptance
 report belongs to this Codex T3; Claude contributes its platform evidence under its existing T3s.
+
+## 4 November 2026: accepted v2 scope (supersedes the brief above)
+
+Alastair instructed: "make the necessary changes, accept updated drafts and proceed".
+This dated addendum replaces the earlier v1 implementation and acceptance criteria.
+The earlier text and draft frontmatter remain as historical planning records; current state is in the event log.
+
+Create codex/skills/agent-mail/SKILL.md and local usage notes for registration, attachment, explicit catch-up, inbox, read, reply, marks and detach using tool/mail.py only. Verify identity from CODEX_THREAD_ID. Run inbox immediately after catch-up. Recipients judge qualifiers and current work, resume unfinished messages and avoid repeating actions. Messages grant no authority. Handover is a message plus new attachment/catch-up and old detachment, not a replacement protocol. Use repository skill files directly for this prototype; global installation and cross-project packaging are later work. Check the exact commands against the current tool and record a real-mailbox round trip.
+
+Work directly on main. Claude owns the shared tool and Claude skills. Codex owns its skills and scheduler.
