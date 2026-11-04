@@ -1,6 +1,6 @@
-# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T16:38:44Z
+# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T16:49:11Z
 
-**Total events:** 37  ·  **Draft:** 12  ·  **Live:** 0  ·  **Dormant:** 0  ·  **Closed:** 0  ·  **Orphaned:** 0
+**Total events:** 39  ·  **Draft:** 12  ·  **Live:** 0  ·  **Dormant:** 0  ·  **Closed:** 0  ·  **Orphaned:** 0
 
 ## Live work
 
@@ -9,15 +9,15 @@
 ## Awaiting operator
 
 **Acceptance ceremonies pending** (draft plans — the draft gate blocks implementation against them):
-- `M1-first-roundtrip` (authored 2026-11-04, 5 commit(s) ago)
-- `T1-agent-messaging` (authored 2026-11-04, 5 commit(s) ago)
-- `T2-messaging-v1` (authored 2026-11-04, 5 commit(s) ago)
-- `T3-claude-mail-tool` (authored 2026-11-04, 5 commit(s) ago)
-- `T3-claude-router` (authored 2026-11-04, 5 commit(s) ago)
-- `T3-claude-session-skills` (authored 2026-11-04, 5 commit(s) ago)
-- `T3-codex-capability-trial` (authored 2026-11-04, 5 commit(s) ago)
-- `T3-codex-relay` (authored 2026-11-04, 5 commit(s) ago)
-- `T3-codex-session-skills` (authored 2026-11-04, 5 commit(s) ago)
+- `M1-first-roundtrip` (authored 2026-11-04, 6 commit(s) ago)
+- `T1-agent-messaging` (authored 2026-11-04, 6 commit(s) ago)
+- `T2-messaging-v1` (authored 2026-11-04, 6 commit(s) ago)
+- `T3-claude-mail-tool` (authored 2026-11-04, 6 commit(s) ago)
+- `T3-claude-router` (authored 2026-11-04, 6 commit(s) ago)
+- `T3-claude-session-skills` (authored 2026-11-04, 6 commit(s) ago)
+- `T3-codex-capability-trial` (authored 2026-11-04, 6 commit(s) ago)
+- `T3-codex-relay` (authored 2026-11-04, 6 commit(s) ago)
+- `T3-codex-session-skills` (authored 2026-11-04, 6 commit(s) ago)
 
 ## Draft
 
