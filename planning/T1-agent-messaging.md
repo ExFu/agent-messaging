@@ -2,7 +2,7 @@
 id: T1-agent-messaging
 plan_kind: thematic
 tier: 1
-status: draft
+status: active
 ---
 
 # T1: agent messaging between Claude and Codex
@@ -186,3 +186,14 @@ domain model shrinks accordingly. [docs/contract-v2.md](../docs/contract-v2.md) 
 - Recipients judge their own qualifiers.
 - Roles become channels.
 - Replacement, rerouting, escalation, presence and mandate records are dropped. Agents settle those by asking.
+
+## Shipped, and what's still open (4 November 2026)
+
+v1 of the messaging is shipped: contract v2, the shared command, one router for both platforms, and the Claude skills
+as the `exfu-agent-messaging` plugin in the ExFu marketplace (0.1.0). T2, M1 and Claude's three T3s are closed.
+Codex closed its own three. Open follow-ups, each small:
+- **A busy Codex chat:** what happens when one is nudged mid-turn (untested; Claude's busy case worked).
+- **Other projects:** a session in another project registering, joining and getting nudged (untested).
+- **A cold dry run of the v2 session skill** by a fresh agent (only the v1 skill was dry-run).
+- **The router as a single point:** it is now the only nudge path. If its session stops, nothing nudges anyone until
+  a new router starts.

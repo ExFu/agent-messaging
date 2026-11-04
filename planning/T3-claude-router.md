@@ -5,7 +5,7 @@ tier: 3
 t2_parent: T2-messaging-v1
 milestone: M1-first-roundtrip
 owner: claude
-status: draft
+status: completed
 ---
 
 # T3 (Claude): the router session that delivers mail to Claude sessions
@@ -99,3 +99,16 @@ nudges Codex chats with `codex queue --thread <id> --message <text>`. Test EXFU-
 test chat with no other help. The chat read the message, then paused to check whether replying was in its brief, and
 replied once that was clarified. Codex keeps its one-minute heartbeat as a fallback until the two sides agree to
 retire it.
+
+
+## Done when, restated for contract v2 (4 November 2026)
+
+The criteria above were written for contract v1: roles, replacement records, relay receipts, a five-minute target.
+v2 dropped those. Alastair: "Go ahead" (4 November 2026), on restating the criteria for v2 and closing.
+
+Met: the live router nudges sessions on both platforms, with about one line of transcript per nudge. Results:
+- message 28 to Claude, nudged;
+- message 77 to a Codex chat, which woke on its own;
+- messages to Codex alone, or between Codex chats, correctly not nudged.
+
+A repeat nudge is harmless, and none was needed in normal running.

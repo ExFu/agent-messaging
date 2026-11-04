@@ -5,7 +5,7 @@ tier: 3
 t2_parent: T2-messaging-v1
 milestone: M1-first-roundtrip
 owner: claude
-status: draft
+status: completed
 ---
 
 # T3 (Claude): skills for Claude sessions and the orchestrator, as a plugin
@@ -76,3 +76,14 @@ Under [contract v2](../docs/contract-v2.md), the session skill gets shorter:
 - Roles are channels.
 - Handover is a message to the channel, then catch-up.
 - When unsure, the session asks the other agent.
+
+
+## Done when, restated for contract v2 (4 November 2026)
+
+The criteria above were written for contract v1: roles, replacement records, relay receipts, a five-minute target.
+v2 dropped those. Alastair: "Go ahead" (4 November 2026), on restating the criteria for v2 and closing.
+
+Met: both skills ship in `exfu-agent-messaging` 0.1.0, released through the ExFu marketplace (marketplace commit
+`34f5a57`, pinned to `a1da452`). The marketplace's `scripts/check` and `scripts/smoke-test` pass, and the smoke test
+installs it into a fresh home folder. The skill was followed in real use here, and a fresh agent dry-ran the earlier
+version. Not covered: a fresh agent following the v2 skill cold, carried to T1.

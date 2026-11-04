@@ -2,7 +2,7 @@
 id: T2-messaging-v1
 plan_kind: thematic
 tier: 2
-status: draft
+status: completed
 ---
 
 # T2: messaging v1, the first working round trip
@@ -73,3 +73,20 @@ chat creation in v1. Actual cadence, scheduled tool access and busy-chat deliver
 Proposed correction to Done when: selected recipients receive at least once with deduplication before actions, rather
 than a promise of exactly-once transport to every listener. Add empty-channel catch-up and delivered-but-unfinished
 handover to acceptance. Durable per-recipient receipts and explicit replay allow restart without repeating completed work.
+
+
+## Done when, restated for contract v2 (4 November 2026)
+
+The criteria above were written for contract v1: roles, replacement records, relay receipts, a five-minute target.
+v2 dropped those. Alastair: "Go ahead" (4 November 2026), on restating the criteria for v2 and closing.
+
+| v2 criterion | Evidence |
+|---|---|
+| A Claude session asks Codex through a channel and the answer arrives without polling | Messages 25 and 28: the router nudged the asking session, live |
+| A Codex session asks Claude and the answer gets back to it | Messages 6, 12 and 16; message 77, with the router waking the Codex chat by `codex queue` |
+| Each recipient on a channel is reached once, and one finishing doesn't hide it from another | `test_one_recipient_closing_does_not_hide_anothers_mail`; marks are per recipient in the real mailbox |
+| A late joiner picks up waiting mail | Codex's catch-up of the welcome message (registry 10), then a real reply |
+| Alastair accepts it | Contract v2 accepted, then "Go ahead" to close |
+
+**Known gaps, carried to T1:** a Codex chat that is busy when nudged is untested, and so are sessions in other
+projects. Claude's busy case was seen live: the router reported "queued, session mid-turn" and the mail was handled.

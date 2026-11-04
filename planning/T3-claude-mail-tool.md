@@ -5,7 +5,7 @@ tier: 3
 t2_parent: T2-messaging-v1
 milestone: M1-first-roundtrip
 owner: claude
-status: draft
+status: completed
 ---
 
 # T3 (Claude): the shared command for the mail files
@@ -81,3 +81,12 @@ Under [contract v2](../docs/contract-v2.md), the command loses mandates, session
 router queue and envelopes. It gains `new` and `watch --since` for routers that only nudge. What stays is the
 storage (lock, one-time writes, crash recovery), channels, catch-up, send, reply, read, marks and inbox. It reads
 v1 records already in the real mailbox and ignores the types it no longer uses. 15 tests pass.
+
+
+## Done when, restated for contract v2 (4 November 2026)
+
+The criteria above were written for contract v1: roles, replacement records, relay receipts, a five-minute target.
+v2 dropped those. Alastair: "Go ahead" (4 November 2026), on restating the criteria for v2 and closing.
+
+Met: the command is the only writer of the real mailbox, which Claude and Codex both use. Its tests pass
+(`python3 -m unittest discover tests`). It ships inside the `exfu-agent-messaging` plugin.
