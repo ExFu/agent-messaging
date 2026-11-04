@@ -64,3 +64,22 @@ and the router's own transcript stays at about a line per message.
 Codex added the missing milestone pointer to M1-first-roundtrip. Ownership and the original brief are unchanged.
 Before implementation, Claude should reconcile this brief with the requested contract changes in
 [the Codex domain review](../docs/reviews/2026-11-04-codex-domain-review.md) and publish final paths and verification commands.
+
+## First slice, 4 November 2026
+
+Alastair: "Start them now" (not waiting for Codex's delivery trial). Built against contract draft 3, with no roles yet:
+- **The skill:** [plugin/agent-mail/skills/agent-mail-router/SKILL.md](../plugin/agent-mail/skills/agent-mail-router/SKILL.md).
+- **Command support** in `tool/mail.py`:
+  - `lease` (acquire, renew and release, with a generation token);
+  - `pending --for claude`, a queue of decide, deliver, reconcile, retry, exhaust and unplaced items;
+  - `watch`, which blocks in the background until there is work;
+  - `relay`, which writes the router's receipts and checks the lease;
+  - `envelope`, the exact delivery text.
+
+Liveness uses `get_session`, and delivery uses `SendMessage` to the `local_…` id. Changes from the brief above, to fit
+the contract:
+- A dead target is held with its reason, not sent to an orchestrator, because there is no orchestrator role yet.
+- Bare `claude` mail goes only to the Claude session already in the thread. Anything else is held for placing by hand.
+- Escalation notices are not built. The router says so in one line of its own transcript.
+
+Tests: `python3 -m unittest discover tool/tests`. Slice 2 (the dry run) is running. Slice 3 (the live run) comes next.

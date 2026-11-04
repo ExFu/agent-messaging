@@ -1,6 +1,6 @@
-# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T17:03:52Z
+# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T17:13:57Z
 
-**Total events:** 52  ·  **Draft:** 8  ·  **Live:** 4  ·  **Dormant:** 0  ·  **Closed:** 0  ·  **Orphaned:** 0
+**Total events:** 62  ·  **Draft:** 6  ·  **Live:** 6  ·  **Dormant:** 0  ·  **Closed:** 0  ·  **Orphaned:** 0
 
 ## Live work
 
@@ -16,7 +16,9 @@
   - `M1-first-roundtrip` (3 events): entity.created → relationship.spawns → entity.accepted
 
 - **T2-messaging-v1**
-  - `T3-claude-mail-tool` (8 events): verification.tested → entity.progressed → verification.tested
+  - `T3-claude-mail-tool` (9 events): entity.progressed → verification.tested → entity.progressed
+  - `T3-claude-router` (7 events): entity.extended → verification.tested → entity.progressed
+  - `T3-claude-session-skills` (7 events): entity.extended → verification.tested → entity.progressed
 
 ### By milestone
 
@@ -25,15 +27,15 @@
 
 - **M1-first-roundtrip**
   - `T3-claude-mail-tool`
+  - `T3-claude-router`
+  - `T3-claude-session-skills`
 
 ## Awaiting operator
 
 **Acceptance ceremonies pending** (draft plans — the draft gate blocks implementation against them):
-- `T3-claude-router` (authored 2026-11-04, 8 commit(s) ago)
-- `T3-claude-session-skills` (authored 2026-11-04, 8 commit(s) ago)
-- `T3-codex-capability-trial` (authored 2026-11-04, 8 commit(s) ago)
-- `T3-codex-relay` (authored 2026-11-04, 8 commit(s) ago)
-- `T3-codex-session-skills` (authored 2026-11-04, 8 commit(s) ago)
+- `T3-codex-capability-trial` (authored 2026-11-04, 9 commit(s) ago)
+- `T3-codex-relay` (authored 2026-11-04, 9 commit(s) ago)
+- `T3-codex-session-skills` (authored 2026-11-04, 9 commit(s) ago)
 
 ## Draft
 
@@ -42,8 +44,6 @@
   - `2026-11-04.ids-need-strict-order`
   - `2026-11-04.test-substrate`
 - **plan**
-  - `T3-claude-router`
-  - `T3-claude-session-skills`
   - `T3-codex-capability-trial`
   - `T3-codex-relay`
   - `T3-codex-session-skills`
@@ -66,7 +66,7 @@ _No flapping closures._
 
 ## Milestone progress
 
-- **M1-first-roundtrip**: 0/6 T3 complete (0%); 1 live
+- **M1-first-roundtrip**: 0/6 T3 complete (0%); 3 live
 
 ---
 _12 entities · 14 relationships · 1 decisions._

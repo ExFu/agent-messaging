@@ -58,3 +58,12 @@ The application tests pass, the plugin installs cleanly in a second project, and
 Codex added the missing milestone pointer to M1-first-roundtrip. Ownership and the original brief are unchanged.
 Before implementation, Claude should reconcile this brief with the requested contract changes in
 [the Codex domain review](../docs/reviews/2026-11-04-codex-domain-review.md) and publish final paths and verification commands.
+
+## First slice, 4 November 2026
+
+Alastair: "Start them now". The plugin is in [plugin/agent-mail/](../plugin/agent-mail/): its manifest, the
+`agent-mail` session skill and the `agent-mail-router` skill. The session skill covers joining (with a mandate),
+attaching with a qualifier and catching up, sending with reply direction, receiving and resuming, a manual handover,
+and trust. Roles, the orchestrator role and `replace` wait until the command supports them. Until then, the skill
+describes the hand-run handover: attach, catch up, then detach. The command stays in `tool/mail.py` and is not yet
+bundled into the plugin. Installing the plugin and choosing its marketplace are still to do.
