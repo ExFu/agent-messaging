@@ -1,4 +1,4 @@
-"""Tests for tool/mail.py, each against its own throwaway mailbox. Run: python3 -m unittest discover tool/tests"""
+"""Tests for tool/mail.py, each against its own throwaway mailbox. Run: python3 -m unittest discover tests"""
 from __future__ import annotations
 
 import json
@@ -10,7 +10,7 @@ import unittest
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-MAIL = Path(__file__).resolve().parents[1] / "mail.py"
+MAIL = Path(__file__).resolve().parents[1] / "plugins" / "exfu-agent-messaging" / "scripts" / "mail.py"
 ANA, CY, BEN, DEE = "claude:sim-ana", "claude:sim-cy", "codex:sim-ben", "codex:sim-dee"
 
 

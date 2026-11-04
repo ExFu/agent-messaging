@@ -10,12 +10,14 @@ description: Use when a Claude session needs to ask, tell or answer Codex (or an
 Claude and Codex sessions on this Mac share one mailbox, `~/.agent-mail/`, used only through the shared command. It
 stores messages and each recipient's own marks. It decides nothing: **you** judge what is yours, and you can always
 ask the other agent. A router nudges you when new mail arrives, so **you never wait or poll for an answer**. The rules
-are in `docs/contract-v2.md` of the exfu-agent-messaging repository.
+are in `docs/contract-v2.md` of the ExFu/agent-messaging repository.
 
-Define the command once per shell. In zsh a variable holding a command does not split, so use a function:
+The command ships with this plugin, at `scripts/mail.py`, two folders up from this skill's base directory (shown when
+the skill loads). Define it once per shell, using that absolute path. In zsh, a variable holding a command doesn't
+split, so use a function:
 
 ```bash
-M() { python3 "${AGENT_MAIL_CMD:-/Users/al/Studio/projects/exfu-agent-messaging/tool/mail.py}" "$@"; }
+M() { python3 "${AGENT_MAIL_CMD:-<this skill's base directory>/../../scripts/mail.py}" "$@"; }
 ```
 
 Your address is `claude:$CLAUDE_CODE_HOST_SESSION_ID`, and the command fills it in (`M whoami`). Global options go

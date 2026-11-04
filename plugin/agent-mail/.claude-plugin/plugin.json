@@ -1,8 +1,0 @@
-{
-  "name": "agent-mail",
-  "version": "0.1.0",
-  "description": "Claude's side of the shared Claude and Codex mailbox: a skill for every session, and the router that delivers mail into Claude sessions.",
-  "author": {
-    "name": "Alastair Brayne"
-  }
-}

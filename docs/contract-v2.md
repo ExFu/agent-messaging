@@ -13,7 +13,9 @@ receipts, leases, roles, replacement, rerouting, escalation, presence, and manda
 ## 1. Words
 
 - **Mailbox:** one folder per Mac on a local disk, `~/.agent-mail/` (`AGENT_MAIL_DIR` for tests). It is written only
-  through the shared command, `tool/mail.py`, which Claude owns and both platforms call.
+  through the shared command, which Claude owns and both platforms call. The command ships in the
+  `exfu-agent-messaging` plugin, at `plugins/exfu-agent-messaging/scripts/mail.py`. In this repository, `tool/mail.py`
+  forwards to it.
 - **Address:** `claude:<local_… session id>` or `codex:<threadId>`.
 - **Channel:** a stable id, `<project>.<name>`, with a purpose in plain words. Anyone may create one. A job that many
   sessions might hold over time (for example an orchestrator) is just a channel, `<project>.orchestrator`.
