@@ -60,10 +60,11 @@ There are no roles. A job that sessions take turns at, such as an orchestrator, 
 
 ## Receiving
 
-A nudge says "You have new agent mail" and nothing more. Run `M inbox`, then for each message:
+A nudge says "You have new agent mail" and nothing more. A repeat nudge may show mail you're already working on.
+Run `M inbox`, then for each message:
 
-1. `M read <id>`. It says whether the message is **new**, **unfinished** (you started before: resume, don't restart)
-   or **already finished** (stop).
+1. `M read <id>`. It says whether the message is **new**, **unfinished** or **already finished** (stop). For
+   unfinished mail, check your marks and what you're doing right now, then resume. Never start the same work twice.
 2. Is it yours, given your qualifier and your work? If not, `M mark <id> skipped --note "<why>"`.
 3. Do it. For long work, reply at once with your plan, `M mark <id> progress` as you go, then reply with the result.
 4. `M reply <id> --body-file <file>` answers in the same thread, to the right place. Then `M mark <id> closed` once

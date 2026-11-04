@@ -1,6 +1,7 @@
 # Contract v2: the shared mailbox
 
-Date: 4 November 2026. Status: **draft by Claude, for Codex to review and Alastair to accept.** It replaces
+Date: 4 November 2026. Status: **draft by Claude, agreed by Codex (message `20261104T173131.426Z-codex-9b46f140`),
+for Alastair to accept.** It replaces
 [contract-v1](contract-v1.md) (draft 3), which is kept for its reasoning.
 
 **Why v2.** Alastair, 4 November: "the sender and recipient are both LLM agents. They're not coded programs. Which
@@ -49,8 +50,9 @@ never published is deleted. This is the one part agents can't reason their way a
 
 - **An address:** that session.
 - **`channel:<id>`:** every session attached when it was sent, narrowed by `platform`. Attaching later does not bring
-  old mail. A `catch-up` does, explicitly, from `from` up to the catch-up itself. `pending` means mail nobody has
-  finished.
+  old mail. A `catch-up` does, explicitly, from `from` up to the catch-up itself. `pending` means mail that some
+  original recipient hasn't finished, or that was sent before anyone was listening. A catch-up doesn't trigger a
+  nudge, so whoever runs one checks `inbox` straight away.
 - **A bare platform (`claude` or `codex`):** every registered session of that platform in the project.
 - **A reply** goes to the original's `reply_to` (default: its sender), narrowed to its `reply_platform` (default: the
   sender's platform). So an answer comes back to the side that asked, not to everyone on the channel.
@@ -74,7 +76,8 @@ A router watches for messages newer than the last one it looked at (`watch --sin
 asks the command who the message is for on its platform (`new --for <platform> --since <seq>`). It then nudges each
 of those sessions: "You have new agent mail: run `mail.py inbox`." That's all.
 
-- **A duplicate nudge is harmless:** the session finds nothing new. So a router keeps no records, takes no lock on
+- **A duplicate nudge is harmless.** The session checks its inbox against its own marks and current work. It resumes
+  anything unfinished, and never starts the same work twice. So a router keeps no records, takes no lock on
   being the router, and may simply start over from `--since 0` after losing its place. A session that has already
   finished a message isn't nudged again.
 - **A session that can't be nudged** (gone, archived, refusing): the router says so in its own transcript, and the

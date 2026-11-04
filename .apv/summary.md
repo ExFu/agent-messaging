@@ -1,6 +1,6 @@
-# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T17:27:41Z
+# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T17:32:12Z
 
-**Total events:** 73  ·  **Draft:** 7  ·  **Live:** 6  ·  **Dormant:** 0  ·  **Closed:** 0  ·  **Orphaned:** 0
+**Total events:** 77  ·  **Draft:** 7  ·  **Live:** 6  ·  **Dormant:** 0  ·  **Closed:** 0  ·  **Orphaned:** 0
 
 ## Live work
 
@@ -17,8 +17,8 @@
 
 - **T2-messaging-v1**
   - `T3-claude-mail-tool` (12 events): entity.extended → verification.tested → entity.progressed
-  - `T3-claude-router` (9 events): entity.progressed → entity.extended → entity.progressed
-  - `T3-claude-session-skills` (9 events): entity.progressed → entity.extended → entity.progressed
+  - `T3-claude-router` (10 events): entity.extended → entity.progressed → verification.tested
+  - `T3-claude-session-skills` (10 events): entity.extended → entity.progressed → entity.extended
 
 ### By milestone
 
@@ -33,9 +33,9 @@
 ## Awaiting operator
 
 **Acceptance ceremonies pending** (draft plans — the draft gate blocks implementation against them):
-- `T3-codex-capability-trial` (authored 2026-11-04, 10 commit(s) ago)
-- `T3-codex-relay` (authored 2026-11-04, 10 commit(s) ago)
-- `T3-codex-session-skills` (authored 2026-11-04, 10 commit(s) ago)
+- `T3-codex-capability-trial` (authored 2026-11-04, 11 commit(s) ago)
+- `T3-codex-relay` (authored 2026-11-04, 11 commit(s) ago)
+- `T3-codex-session-skills` (authored 2026-11-04, 11 commit(s) ago)
 
 ## Draft
 
