@@ -7,3 +7,9 @@ Prompt source: `codex/templates/relay-prompt.md`. The two currently authorised d
 Initial cursor is zero. The preparatory `new` inspection did not send nudges or advance the cursor. Request `20261104T174330.838Z-codex-aa2bf4c8` (sequence 49) is pending for the genuine scheduled test. No manual nudge was sent for it.
 
 To pause/resume/remove: use automation_update with this automation ID, preserving its other settings. Inspect the tool schema first. To move the router, pause the old heartbeat, bind the user-chosen existing chat and update its target/prompt. Resetting the sequence to zero is safe. No leases or delivery state need recovery. Disable the heartbeat before removing this checkout. App/machine offline behaviour remains untested.
+
+## Faster cadence — 4 November 2026
+
+At Alastair's request, the same heartbeat was updated to every minute. The saved active schedule and target were verified after the update. This is a configured cadence, not a measured latency guarantee.
+
+The local CLI also exposes `codex queue --thread UUID --message TEXT`. A harmless direct wake-up probe to the existing test chat was accepted as queue item `01a1a7ab-6a91-7422-93f7-5a1756e1a836`. Enqueue success alone does not prove the idle desktop chat wakes. The probe explicitly leaves the scheduled mailbox test untouched.

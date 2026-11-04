@@ -68,3 +68,7 @@ The earlier text and draft frontmatter remain as historical planning records; cu
 Create codex/skills/agent-mail-relay/SKILL.md, a heartbeat prompt and setup notes. One five-minute heartbeat on the existing integration chat calls the shared command new --for codex --since S, collects distinct recipients, nudges authorised chats to run inbox, and remembers latest. Start from zero if the cursor is lost. Recipients judge qualifiers. No leases, delivery receipts, routing decisions, retries framework or registry watcher. Report failed nudges in the router transcript; mail stays in the mailbox. Reuse an existing automation rather than duplicate it. Test a genuine scheduled nudge through the real mailbox to the existing authorised test recipient. Do not create a new router chat.
 
 Work directly on main. Claude owns the shared tool and Claude skills. Codex owns its skills and scheduler.
+
+### Cadence adjustment — 4 November 2026
+
+Alastair requested faster conversation than five-minute polling. Use the verified one-minute heartbeat setting for now. Investigate direct wake-up via the installed CLI without claiming that enqueue success proves delivery.

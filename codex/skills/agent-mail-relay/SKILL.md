@@ -1,6 +1,6 @@
 ---
 name: agent-mail-relay
-description: Run or set up the single Codex five-minute shared-mailbox nudge heartbeat.
+description: Run or set up the single Codex one-minute shared-mailbox nudge heartbeat.
 ---
 
 # Codex mail router
@@ -9,7 +9,7 @@ Follow contract v2 section 6. This router only tells sessions to check their mai
 
 ## Setup
 
-Use the existing user-authorised chat. Discover `automation_update` and inspect existing automation files for a matching router before creating one. Use one heartbeat at five-minute cadence, with `codex/templates/relay-prompt.md` as its prompt. Verify the saved cadence and record the automation ID in `docs/codex/relay-setup.md`. Update that automation for changes; use the tool to pause, resume or delete it. Do not write scheduler files manually. Do not create a dedicated chat unless the user requests it.
+Use the existing user-authorised chat. Discover `automation_update` and inspect existing automation files for a matching router before creating one. Use one heartbeat at one-minute cadence, with `codex/templates/relay-prompt.md` as its prompt. Verify the saved cadence and record the automation ID in `docs/codex/relay-setup.md`. Update that automation for changes; use the tool to pause, resume or delete it. Do not write scheduler files manually. Do not create a dedicated chat unless the user requests it.
 
 Maintain one number S, initially zero, in the router transcript. On context loss use zero again. No delivery ledger, lease or extra mailbox records.
 
