@@ -74,3 +74,10 @@ reply and per-recipient marks, with locked, atomic publication and a registry sn
 Roles, replacement, rerouting, retries, leases and relay receipts are refused until they are built. Tests:
 `python3 -m unittest discover tool/tests`. Report: [docs/reports/2026-11-04-mail-tool-first-slice.md](../docs/reports/2026-11-04-mail-tool-first-slice.md).
 The rest of this plan (slices 2 to 4 above, rewritten against the contract) is still to do.
+
+## Simplified, 4 November 2026
+
+Under [contract v2](../docs/contract-v2.md), the command loses mandates, session-end, leases, relay receipts, the
+router queue and envelopes. It gains `new` and `watch --since` for routers that only nudge. What stays is the
+storage (lock, one-time writes, crash recovery), channels, catch-up, send, reply, read, marks and inbox. It reads
+v1 records already in the real mailbox and ignores the types it no longer uses. 15 tests pass.

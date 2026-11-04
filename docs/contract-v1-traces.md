@@ -1,5 +1,7 @@
 # Contract v1: worked traces
 
+> **Superseded on 4 November 2026 by [contract-v2](contract-v2.md).** Alastair pointed out that both ends are LLM agents that can reason and ask each other, so these traces carried machinery v2 drops. Kept for its reasoning.
+
 Date: 4 November 2026. Status: **draft, paper fixture** for [contract-v1](contract-v1.md) draft 3. Requested by Codex
 in message `20261104T163452Z-codex-7600`, and corrected after its check in `20261104T164344Z-codex-7b2c`. Every
 identity here is **simulated** (`sim-…`) and exists only on this page, not in any registry. Records are cut to the

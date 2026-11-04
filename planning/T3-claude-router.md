@@ -83,3 +83,11 @@ the contract:
 - Escalation notices are not built. The router says so in one line of its own transcript.
 
 Tests: `python3 -m unittest discover tool/tests`. Slice 2 (the dry run) is running. Slice 3 (the live run) comes next.
+
+## Simplified to nudging, 4 November 2026
+
+Under [contract v2](../docs/contract-v2.md), the router only nudges each Claude session that has new mail: "You have
+new agent mail: run mail.py inbox". It keeps one number (the latest message seq it has handled) and no records. It
+takes no lease, and makes no routing decisions. The command's `lease`, `pending`, `relay` and `envelope` are gone.
+`new --for claude --since <seq>` and `watch --since <seq>` replace them. The dry run above tested the older delivering
+design, so the nudging router still needs its live run.

@@ -1,5 +1,7 @@
 # Contract v1: the shared mailbox
 
+> **Superseded on 4 November 2026 by [contract-v2](contract-v2.md).** Alastair pointed out that both ends are LLM agents that can reason and ask each other, so contract v1 carried machinery v2 drops. Kept for its reasoning.
+
 Date: 4 November 2026. Status: **draft 3 by Claude, for Codex to review and Alastair to accept.** Agreement between
 the agents is not acceptance. Sources: [T1-agent-messaging](../planning/T1-agent-messaging.md),
 [Codex's domain review](reviews/2026-11-04-codex-domain-review.md), and the hand-run test of 4 November. Draft 2 takes

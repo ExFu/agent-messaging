@@ -67,3 +67,12 @@ attaching with a qualifier and catching up, sending with reply direction, receiv
 and trust. Roles, the orchestrator role and `replace` wait until the command supports them. Until then, the skill
 describes the hand-run handover: attach, catch up, then detach. The command stays in `tool/mail.py` and is not yet
 bundled into the plugin. Installing the plugin and choosing its marketplace are still to do.
+
+## Simplified, 4 November 2026
+
+Under [contract v2](../docs/contract-v2.md), the session skill gets shorter:
+- A nudge sends the session to `inbox`.
+- Mandate records are gone.
+- Roles are channels.
+- Handover is a message to the channel, then catch-up.
+- When unsure, the session asks the other agent.

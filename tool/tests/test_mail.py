@@ -35,7 +35,7 @@ class MailTest(unittest.TestCase):
         return p.stderr
 
     def setup_demo(self, attach=(ANA, CY, BEN)):
-        self.run_mail(ANA, "project", "create", "demo", "--escalation", "claude")
+        self.run_mail(ANA, "project", "create", "demo")
         self.run_mail(ANA, "channel", "create", "demo.unlock", "--purpose", "the unlock screen")
         for who in (ANA, CY, BEN, DEE):
             self.run_mail(who, "session", "register", "--project", "demo", "--title", who)
@@ -131,7 +131,7 @@ class MailTest(unittest.TestCase):
 
     def test_refusals(self):
         self.setup_demo()
-        self.assertIn("roles are not supported",
+        self.assertIn("there are no roles",
                       self.run_mail(ANA, "send", "--to", "role:design", "--project", "demo", "--kind", "ask",
                                     "--subject", "x", "--body", "x", ok=False))
         self.assertIn("does not match",
@@ -177,77 +177,6 @@ class MailTest(unittest.TestCase):
                             "--body", "b")
         self.assertEqual(nxt["seq"], msg["seq"] + 1)
 
-    def pending(self, who=ANA):
-        return {(i["message"], i["recipient"]): i["action"] for i in self.run_mail(who, "pending", "--for", "claude")}
-
-    def test_relay_lease_is_exclusive_and_stale_generations_are_refused(self):
-        self.setup_demo()
-        gen = self.run_mail(ANA, "lease", "acquire", "--platform", "claude")["generation"]
-        self.assertIn("lease held by", self.run_mail(CY, "lease", "acquire", "--platform", "claude", ok=False))
-        self.assertIn("only a claude session", self.run_mail(BEN, "lease", "acquire", "--platform", "claude",
-                                                             ok=False))
-        self.assertEqual(self.run_mail(ANA, "lease", "renew", "--platform", "claude")["generation"], gen)
-        self.run_mail(ANA, "lease", "release", "--platform", "claude")
-        gen2 = self.run_mail(CY, "lease", "acquire", "--platform", "claude")["generation"]
-        self.assertNotEqual(gen, gen2)
-        msg = self.run_mail(DEE, "send", "--to", "channel:demo.unlock", "--kind", "tell", "--subject", "s",
-                            "--body", "b")
-        self.assertIn("lease is not current",
-                      self.run_mail(ANA, "relay", msg["id"], ANA, "routed", "--lease", gen, ok=False))
-        self.run_mail(CY, "relay", msg["id"], ANA, "routed", "--lease", gen2)
-
-    def test_relay_queue_follows_an_obligation_through_its_life(self):
-        self.setup_demo()
-        gen = self.run_mail(CY, "lease", "acquire", "--platform", "claude")["generation"]
-        msg = self.run_mail(DEE, "send", "--to", "channel:demo.unlock", "--kind", "ask", "--subject", "s",
-                            "--body", "b")
-        m = msg["id"]
-        self.assertEqual(self.pending(), {(m, ANA): "decide", (m, CY): "decide"})   # Codex's Ben is not ours
-        self.run_mail(CY, "relay", m, CY, "skipped", "--lease", gen, "--note", "not a safety review")
-        self.run_mail(CY, "relay", m, ANA, "routed", "--lease", gen, "--note", "copy change")
-        self.assertEqual(self.pending(), {(m, ANA): "deliver"})
-        a1 = self.run_mail(CY, "relay", m, ANA, "attempt-started", "--lease", gen)["attempt_id"]
-        self.assertEqual(self.pending(), {(m, ANA): "reconcile"})                    # crashed mid-send
-        self.run_mail(CY, "relay", m, ANA, "uncertain", "--lease", gen, "--attempt-id", a1)
-        self.assertEqual(self.pending(), {(m, ANA): "retry"})
-        self.assertIn("attempt-id", self.run_mail(CY, "relay", m, ANA, "delivered", "--lease", gen,
-                                                  "--attempt-id", "nope", ok=False))
-        a2 = self.run_mail(CY, "relay", m, ANA, "attempt-started", "--lease", gen)
-        self.assertEqual(a2["attempt"], 2)
-        self.run_mail(CY, "relay", m, ANA, "delivered", "--lease", gen, "--attempt-id", a2["attempt_id"])
-        self.assertEqual(self.pending(), {})
-        envelope = self.run_mail(CY, "envelope", m, "--for", ANA)
-        self.assertTrue(envelope.startswith(f"Agent mail from {DEE}: s (ask, id {m})"))
-        self.assertIn("your note: copy and layout", envelope)
-        self.assertIn("not Alastair", envelope)
-
-    def test_relay_gives_up_after_three_attempts_and_respects_backoff(self):
-        self.setup_demo(attach=(ANA,))
-        gen = self.run_mail(CY, "lease", "acquire", "--platform", "claude")["generation"]
-        m = self.run_mail(DEE, "send", "--to", ANA, "--project", "demo", "--kind", "tell", "--subject", "s",
-                          "--body", "b")["id"]
-        self.run_mail(CY, "relay", m, ANA, "routed", "--lease", gen)
-        for n in range(3):
-            aid = self.run_mail(CY, "relay", m, ANA, "attempt-started", "--lease", gen)["attempt_id"]
-            self.run_mail(CY, "relay", m, ANA, "failed", "--lease", gen, "--attempt-id", aid,
-                          "--retry-in", "0" if n < 2 else "3600")
-            if n == 0:
-                self.assertEqual(self.pending(), {(m, ANA): "retry"})
-        self.assertEqual(self.pending(), {(m, ANA): "exhaust"})
-        self.run_mail(CY, "relay", m, ANA, "exhausted", "--lease", gen)
-        self.assertEqual(self.pending(), {})
-
-    def test_uncertain_attempts_do_not_use_up_the_retry_budget(self):
-        self.setup_demo(attach=(ANA,))
-        gen = self.run_mail(CY, "lease", "acquire", "--platform", "claude")["generation"]
-        m = self.run_mail(DEE, "send", "--to", ANA, "--project", "demo", "--kind", "tell", "--subject", "s",
-                          "--body", "b")["id"]
-        self.run_mail(CY, "relay", m, ANA, "routed", "--lease", gen)
-        for _ in range(4):
-            aid = self.run_mail(CY, "relay", m, ANA, "attempt-started", "--lease", gen)["attempt_id"]
-            self.run_mail(CY, "relay", m, ANA, "uncertain", "--lease", gen, "--attempt-id", aid)
-        self.assertEqual(self.pending(), {(m, ANA): "retry"})
-
     def test_read_reports_marks_from_before_this_read(self):
         self.setup_demo()
         m = self.run_mail(DEE, "send", "--to", "channel:demo.unlock", "--kind", "ask", "--subject", "s",
@@ -258,43 +187,38 @@ class MailTest(unittest.TestCase):
         again = self.run_mail(ANA, "read", m)
         self.assertEqual(again["earlier_marks"], ["read", "progress"])
 
-    def test_catch_up_reports_what_it_brought_and_mandates_are_listed(self):
+    def test_catch_up_reports_what_it_brought(self):
         self.setup_demo(attach=(ANA,))
         for i in range(2):
             self.run_mail(ANA, "send", "--to", "channel:demo.unlock", "--kind", "tell", "--subject", str(i),
                           "--body", "x")
         self.assertEqual(self.run_mail(CY, "catch-up", "demo.unlock", "--from", "pending")["caught_up"], 2)
-        mid = self.run_mail(ANA, "mandate", "add", "--project", "demo", "--quote", "go", "--said-at", "2026-11-04",
-                            "--source", "test")["id"]
-        self.assertEqual([x["id"] for x in self.run_mail(CY, "mandates", "--project", "demo")], [mid])
 
-    def test_relay_leaves_mail_a_recipient_already_handles_by_hand(self):
+    def test_new_lists_who_to_nudge_since_a_seq(self):
         self.setup_demo()
-        m = self.run_mail(DEE, "send", "--to", "channel:demo.unlock", "--kind", "tell", "--subject", "s",
-                          "--body", "b")["id"]
-        self.run_mail(ANA, "read", m)
-        self.assertEqual(self.pending(), {(m, CY): "decide"})
+        start = self.run_mail(ANA, "new", "--for", "claude")["latest"]
+        m1 = self.run_mail(DEE, "send", "--to", "channel:demo.unlock", "--kind", "ask", "--subject", "s",
+                           "--body", "b")
+        m2 = self.run_mail(DEE, "send", "--to", BEN, "--project", "demo", "--kind", "tell", "--subject", "t",
+                           "--body", "b")
+        out = self.run_mail(ANA, "new", "--for", "claude", "--since", str(start))
+        self.assertEqual(out["latest"], m2["seq"])
+        rows = {r["id"]: r["for"] for r in out["messages"]}
+        self.assertEqual(sorted(rows[m1["id"]]), sorted([ANA, CY]))   # Ben is Codex's to nudge
+        self.assertEqual(rows[m2["id"]], [])
+        self.run_mail(ANA, "mark", m1["id"], "closed")
+        again = self.run_mail(ANA, "new", "--for", "claude", "--since", str(start))
+        self.assertEqual({r["id"]: r["for"] for r in again["messages"]}[m1["id"]], [CY])   # finished: no nudge
+        self.assertEqual(self.run_mail(ANA, "new", "--for", "claude", "--since", str(out["latest"]))["messages"], [])
 
-    def test_unplaced_mail_is_held_and_reconsidered_after_registry_change(self):
-        self.setup_demo(attach=(BEN,))
-        gen = self.run_mail(ANA, "lease", "acquire", "--platform", "claude")["generation"]
-        m = self.run_mail(DEE, "send", "--to", "channel:demo.unlock", "--platform", "claude", "--kind", "ask",
-                          "--subject", "anyone?", "--body", "b")["id"]
-        self.assertEqual(self.pending(), {(m, None): "unplaced"})
-        self.run_mail(ANA, "relay", m, "none", "held", "--lease", gen, "--note", "no Claude listener")
-        self.assertEqual(self.pending(), {})
-        self.run_mail(ANA, "attach", "demo.unlock")
-        self.assertEqual(self.pending(), {(m, None): "unplaced"})       # looked at again, still nobody
-        self.run_mail(ANA, "catch-up", "demo.unlock", "--from", "pending")
-        self.assertEqual(self.pending(), {(m, ANA): "decide"})
-
-    def test_watch_waits_for_work(self):
+    def test_watch_wakes_on_a_newer_message(self):
         self.setup_demo()
-        p = subprocess.run([sys.executable, str(MAIL), "--as", ANA, "watch", "--for", "claude", "--timeout", "1",
+        latest = self.run_mail(ANA, "new", "--for", "claude")["latest"]
+        p = subprocess.run([sys.executable, str(MAIL), "--as", ANA, "watch", "--since", str(latest), "--timeout", "1",
                             "--interval", "0.2"], env=self.env, capture_output=True, text=True)
         self.assertEqual(p.returncode, 1)
         self.run_mail(DEE, "send", "--to", "channel:demo.unlock", "--kind", "tell", "--subject", "s", "--body", "b")
-        self.assertEqual(self.run_mail(ANA, "watch", "--for", "claude", "--timeout", "1")["pending"], 2)
+        self.assertGreater(self.run_mail(ANA, "watch", "--since", str(latest), "--timeout", "1")["latest"], latest)
 
     def test_records_are_never_overwritten(self):
         self.setup_demo()

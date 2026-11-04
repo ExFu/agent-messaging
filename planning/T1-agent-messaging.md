@@ -175,3 +175,14 @@ Alastair's Codex-chat direction: the registry has a channel-to-session map and o
 He explicitly said: "I don't think we need 'owner' concepts per se, given we can use natural language directives for
 more sophisticated and unforseeable routing variations." T3 implementation ownership remains single-platform;
 message handling needs no fixed owner schema. New Codex chats are manually created and registered for v1.
+
+
+## Simplified, 4 November 2026
+
+Alastair: "the sender and recipient are both LLM agents. They're not coded programs ... they can ask each other." The
+domain model shrinks accordingly. [docs/contract-v2.md](../docs/contract-v2.md) replaces v1:
+- The mailbox only stores messages and each recipient's own marks.
+- Routers only nudge sessions that have new mail.
+- Recipients judge their own qualifiers.
+- Roles become channels.
+- Replacement, rerouting, escalation, presence and mandate records are dropped. Agents settle those by asking.
