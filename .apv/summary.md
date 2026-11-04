@@ -1,6 +1,6 @@
-# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T17:47:57Z
+# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T17:54:05Z
 
-**Total events:** 105  ·  **Draft:** 0  ·  **Live:** 8  ·  **Dormant:** 0  ·  **Closed:** 5  ·  **Orphaned:** 0
+**Total events:** 110  ·  **Draft:** 0  ·  **Live:** 6  ·  **Dormant:** 0  ·  **Closed:** 7  ·  **Orphaned:** 0
 
 ## Live work
 
@@ -19,8 +19,6 @@
   - `T3-claude-mail-tool` (12 events): entity.extended → verification.tested → entity.progressed
   - `T3-claude-router` (10 events): entity.extended → entity.progressed → verification.tested
   - `T3-claude-session-skills` (10 events): entity.extended → entity.progressed → entity.extended
-  - `T3-codex-relay` (8 events): entity.extended → entity.progressed → verification.tested
-  - `T3-codex-session-skills` (6 events): entity.accepted → verification.tested → entity.progressed
 
 ### By milestone
 
@@ -31,8 +29,6 @@
   - `T3-claude-mail-tool`
   - `T3-claude-router`
   - `T3-claude-session-skills`
-  - `T3-codex-relay`
-  - `T3-codex-session-skills`
 
 ## Awaiting operator
 
@@ -57,6 +53,8 @@ _No orphaned entities._
 - `2026-11-04.ids-need-strict-order` (inbox-item)
 - `2026-11-04.test-substrate` (inbox-item)
 - `T3-codex-capability-trial` (plan)
+- `T3-codex-relay` (plan)
+- `T3-codex-session-skills` (plan)
 
 ## Notable patterns
 
@@ -64,7 +62,7 @@ _No flapping closures._
 
 ## Milestone progress
 
-- **M1-first-roundtrip**: 1/6 T3 complete (16%); 5 live
+- **M1-first-roundtrip**: 3/6 T3 complete (50%); 3 live
 
 ---
 _13 entities · 14 relationships · 3 decisions._
