@@ -1,0 +1,10 @@
+{
+ "id": "20261104T160800Z-claude-8a90",
+ "project": "exfu-agent-messaging",
+ "record": "attach",
+ "channel": "exfu-agent-messaging.test-findings",
+ "address": "claude:local_f978f185-f656-4199-9af8-c39559188065",
+ "qualifier": "Everything; Claude owns the README and folds findings into it.",
+ "by": "claude:local_f978f185-f656-4199-9af8-c39559188065",
+ "time": "2026-11-04T16:08:00Z"
+}

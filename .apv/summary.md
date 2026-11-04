@@ -1,6 +1,6 @@
-# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T16:06:36Z
+# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T16:08:47Z
 
-**Total events:** 23  ·  **Draft:** 9  ·  **Live:** 0  ·  **Dormant:** 0  ·  **Closed:** 0  ·  **Orphaned:** 0
+**Total events:** 26  ·  **Draft:** 11  ·  **Live:** 0  ·  **Dormant:** 0  ·  **Closed:** 0  ·  **Orphaned:** 0
 
 ## Live work
 
@@ -9,18 +9,21 @@
 ## Awaiting operator
 
 **Acceptance ceremonies pending** (draft plans — the draft gate blocks implementation against them):
-- `M1-first-roundtrip` (authored 2026-11-04, 0 commit(s) ago)
-- `T1-agent-messaging` (authored 2026-11-04, 0 commit(s) ago)
-- `T2-messaging-v1` (authored 2026-11-04, 0 commit(s) ago)
-- `T3-claude-mail-tool` (authored 2026-11-04, 0 commit(s) ago)
-- `T3-claude-router` (authored 2026-11-04, 0 commit(s) ago)
-- `T3-claude-session-skills` (authored 2026-11-04, 0 commit(s) ago)
-- `T3-codex-capability-trial` (authored 2026-11-04, 0 commit(s) ago)
-- `T3-codex-relay` (authored 2026-11-04, 0 commit(s) ago)
-- `T3-codex-session-skills` (authored 2026-11-04, 0 commit(s) ago)
+- `M1-first-roundtrip` (authored 2026-11-04, 1 commit(s) ago)
+- `T1-agent-messaging` (authored 2026-11-04, 1 commit(s) ago)
+- `T2-messaging-v1` (authored 2026-11-04, 1 commit(s) ago)
+- `T3-claude-mail-tool` (authored 2026-11-04, 1 commit(s) ago)
+- `T3-claude-router` (authored 2026-11-04, 1 commit(s) ago)
+- `T3-claude-session-skills` (authored 2026-11-04, 1 commit(s) ago)
+- `T3-codex-capability-trial` (authored 2026-11-04, 1 commit(s) ago)
+- `T3-codex-relay` (authored 2026-11-04, 1 commit(s) ago)
+- `T3-codex-session-skills` (authored 2026-11-04, 1 commit(s) ago)
 
 ## Draft
 
+- **inbox-item**
+  - `2026-11-04.ids-need-strict-order`
+  - `2026-11-04.test-substrate`
 - **plan**
   - `M1-first-roundtrip`
   - `T1-agent-messaging`
@@ -53,4 +56,4 @@ _No flapping closures._
 - **M1-first-roundtrip**: 0/6 T3 complete (0%); 0 live
 
 ---
-_9 entities · 14 relationships · 0 decisions._
+_11 entities · 14 relationships · 0 decisions._

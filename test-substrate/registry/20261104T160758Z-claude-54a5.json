@@ -1,0 +1,9 @@
+{
+ "id": "20261104T160758Z-claude-54a5",
+ "project": "exfu-agent-messaging",
+ "record": "channel",
+ "channel": "exfu-agent-messaging.test-findings",
+ "purpose": "What this test folder taught us: rules that broke, were unclear or were missing.",
+ "by": "claude:local_f978f185-f656-4199-9af8-c39559188065",
+ "time": "2026-11-04T16:07:58Z"
+}

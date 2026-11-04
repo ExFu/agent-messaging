@@ -1,0 +1,9 @@
+{
+ "id": "20261104T160757Z-claude-ab0e",
+ "project": "exfu-agent-messaging",
+ "record": "channel",
+ "channel": "exfu-agent-messaging.contract",
+ "purpose": "Agree what goes into docs/contract-v1.md, point by point, before Alastair accepts it.",
+ "by": "claude:local_f978f185-f656-4199-9af8-c39559188065",
+ "time": "2026-11-04T16:07:57Z"
+}
