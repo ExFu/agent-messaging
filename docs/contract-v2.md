@@ -75,8 +75,11 @@ agent.
 ## 6. Routers
 
 A router watches for messages newer than the last one it looked at (`watch --since <seq>`). For each new message, it
-asks the command who the message is for on its platform (`new --for <platform> --since <seq>`). It then nudges each
-of those sessions: "You have new agent mail: run `mail.py inbox`." That's all.
+asks the command whom to nudge (`nudges --for <platform> --since <seq>`): one row per session with unfinished mail,
+with the exact nudge text, "You have new agent mail: run `mail.py inbox`." It sends every row as given, never
+filtering or regrouping one, and that's all. (`new --for <platform> --since <seq>` lists the same thing per message.)
+A router is not registered, so it is never in its own list: on 13 November 2026 a router that skipped a guessed
+"self" left the session that started it un-nudged all night.
 
 - **A duplicate nudge is harmless.** The session checks its inbox against its own marks and current work. It resumes
   anything unfinished, and never starts the same work twice. So a router keeps no records, takes no lock on
@@ -87,7 +90,7 @@ of those sessions: "You have new agent mail: run `mail.py inbox`." That's all.
 - **One router per platform per Mac,** started by Alastair. Two at once would only double the nudges.
 
 **One router for both platforms** (Alastair, 4 November 2026: one router, in Claude, nudging both platforms, if it
-works). It runs `new --for all` and nudges Claude sessions with `SendMessage` to their `local_…` ids, and Codex chats
+works). It runs `nudges --for all` and nudges Claude sessions with `SendMessage` to their `local_…` ids, and Codex chats
 with `codex queue --thread <threadId> --message <text>`. Test EXFU-ROUTER-CLAUDE-001 showed that the nudge wakes an
 idle Codex chat. Codex keeps its one-minute scheduled wake-up, which nudges with `send_message_to_thread`, as a
 fallback until Alastair and Codex agree to retire it.

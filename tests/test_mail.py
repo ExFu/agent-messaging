@@ -213,6 +213,31 @@ class MailTest(unittest.TestCase):
         both = self.run_mail(ANA, "new", "--for", "all", "--since", str(start))
         self.assertEqual({r["id"]: sorted(r["for"]) for r in both["messages"]}[m2["id"]], [BEN])
 
+    def test_nudges_one_per_session_ready_to_send(self):
+        self.setup_demo()
+        start = self.run_mail(ANA, "nudges")["latest"]
+        m1 = self.run_mail(DEE, "send", "--to", "channel:demo.unlock", "--kind", "ask", "--subject", "s",
+                           "--body", "b")
+        self.run_mail(CY, "send", "--to", "channel:demo.unlock", "--kind", "tell", "--subject", "t", "--body", "b")
+        out = self.run_mail(ANA, "nudges", "--since", str(start))
+        self.assertEqual(out["latest"], m1["seq"] + 1)
+        by = {n["to"]: n for n in out["nudges"]}
+        # The asker (ANA here) is listed like anyone else: identity never filters the router's list (13 Nov 2026).
+        self.assertEqual(sorted(by), sorted([ANA, CY, BEN]))
+        self.assertEqual(by[ANA]["messages"], 2)
+        self.assertEqual(by[CY]["messages"], 1)   # not nudged for its own message
+        self.assertEqual((by[BEN]["platform"], by[BEN]["target"]), ("codex", "sim-ben"))
+        self.assertEqual((by[ANA]["platform"], by[ANA]["target"]), ("claude", "sim-ana"))
+        self.assertIn(f"(2 messages, from {DEE}, {CY})", by[ANA]["text"])
+        self.assertIn("(1 message, from", by[CY]["text"])
+        self.assertTrue(by[ANA]["text"].endswith(f"Run: python3 {MAIL} inbox"))
+        self.run_mail(BEN, "mark", m1["id"], "closed")
+        again = {n["to"]: n["messages"] for n in self.run_mail(ANA, "nudges", "--since", str(start))["nudges"]}
+        self.assertEqual(again[BEN], 1)   # finished mail drops out of the count
+        claude_only = self.run_mail(ANA, "nudges", "--for", "claude", "--since", str(start))["nudges"]
+        self.assertEqual(sorted(n["to"] for n in claude_only), sorted([ANA, CY]))
+        self.assertEqual(self.run_mail(ANA, "nudges", "--since", str(out["latest"]))["nudges"], [])
+
     def test_watch_wakes_on_a_newer_message(self):
         self.setup_demo()
         latest = self.run_mail(ANA, "new", "--for", "claude")["latest"]

@@ -20,6 +20,7 @@ judge what is theirs and mark it. A platform's router only nudges sessions that 
 
 For a router (nudging only):
 
+    python3 $M nudges --since <seq>                         # one ready-to-send nudge per session, and the latest seq
     python3 $M new --for all --since <seq>                  # new messages, who each is for, and the latest seq
     python3 $M watch --since <seq> --timeout 3000           # exits 0 when a newer message exists, 1 on timeout
 
@@ -639,6 +640,27 @@ def cmd_new(args, root):
     return {"latest": top_message_seq(state), "messages": rows}
 
 
+def nudge_text(count: int, senders: list[str]) -> str:
+    mail = Path(__file__).resolve()
+    return (f"You have new agent mail ({count} message{'s' if count != 1 else ''}, from {', '.join(senders)}). "
+            f"Run: python3 {mail} inbox")
+
+
+def cmd_nudges(args, root):
+    """One nudge per session with unfinished mail newer than --since, ready to send as is: the router never filters."""
+    found = cmd_new(args, root)
+    per: dict[str, dict] = {}
+    for row in found["messages"]:
+        for address in row["for"]:
+            n = per.setdefault(address, {"count": 0, "senders": []})
+            n["count"] += 1
+            if row["from"] not in n["senders"]:
+                n["senders"].append(row["from"])
+    nudges = [{"to": a, "platform": platform_of(a), "target": a.split(":", 1)[1], "messages": n["count"],
+               "text": nudge_text(n["count"], n["senders"])} for a, n in per.items()]
+    return {"latest": found["latest"], "nudges": nudges}
+
+
 def cmd_watch(args, root):
     import time
     deadline = time.monotonic() + args.timeout
@@ -692,6 +714,13 @@ def show(result, as_json: bool) -> None:
                       + (f"  [{marks}]" if marks else ""))
             else:
                 print(json.dumps(row, ensure_ascii=False))
+        return
+    if isinstance(result, dict) and "nudges" in result and "latest" in result:
+        for n in result["nudges"]:
+            print(f"{n['platform']:6} {n['target']}  {n['text']}")
+        if not result["nudges"]:
+            print("nobody to nudge")
+        print(f"latest {result['latest']}")
         return
     if isinstance(result, dict) and "messages" in result and "latest" in result:
         for row in result["messages"]:
@@ -805,6 +834,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     sp = add("new", cmd_new)
     sp.add_argument("--for", dest="for_", required=True, choices=PLATFORMS + ("all",))
+    sp.add_argument("--since", type=int, default=0, help="the latest seq you have already looked at")
+    sp = add("nudges", cmd_nudges, help="what a router sends: one nudge per session, never filtered")
+    sp.add_argument("--for", dest="for_", default="all", choices=PLATFORMS + ("all",))
     sp.add_argument("--since", type=int, default=0, help="the latest seq you have already looked at")
     sp = add("watch", cmd_watch)
     sp.add_argument("--since", type=int, required=True)

@@ -1,6 +1,6 @@
-# T1: agent messaging between Claude and Codex — project state — generated 2026-11-04T18:13:17Z
+# T1: agent messaging between Claude and Codex — project state — generated 2026-11-14T21:57:30Z
 
-**Total events:** 133  ·  **Draft:** 0  ·  **Live:** 1  ·  **Dormant:** 0  ·  **Closed:** 12  ·  **Orphaned:** 0
+**Total events:** 139  ·  **Draft:** 1  ·  **Live:** 1  ·  **Dormant:** 0  ·  **Closed:** 13  ·  **Orphaned:** 0
 
 ## Live work
 
@@ -15,7 +15,8 @@ _Nothing waiting on the operator._
 
 ## Draft
 
-_No draft entities._
+- **inbox-item**
+  - `2026-11-14.codex-nudges-wait-for-turn-end`
 
 ## Blocked
 
@@ -31,12 +32,12 @@ _No orphaned entities._
 - `2026-11-04.contract-v2-review` (inbox-item)
 - `2026-11-04.ids-need-strict-order` (inbox-item)
 - `2026-11-04.test-substrate` (inbox-item)
+- `2026-11-14.router-skipped-its-parent` (inbox-item)
 - `M1-first-roundtrip` (plan)
 - `T2-messaging-v1` (plan)
 - `T3-claude-mail-tool` (plan)
 - `T3-claude-router` (plan)
 - `T3-claude-session-skills` (plan)
-- `T3-codex-capability-trial` (plan)
 
 ## Notable patterns
 
@@ -47,4 +48,4 @@ _No flapping closures._
 - **M1-first-roundtrip**: 6/6 T3 complete (100%); 0 live
 
 ---
-_13 entities · 14 relationships · 3 decisions._
+_15 entities · 14 relationships · 3 decisions._
