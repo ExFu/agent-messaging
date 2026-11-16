@@ -1,6 +1,6 @@
 {
   "name": "exfu-agent-messaging",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A shared mailbox on your Mac so Claude and Codex sessions can message each other. Agents send to channels, read their own inbox and mark what they've done; one router session nudges whoever has new mail, in Claude and in Codex. The mailbox only stores and lists; the agents do the judging.",
   "author": {
     "name": "exfu.ai"
